@@ -1,7 +1,7 @@
 var path = require('path')
 
 module.exports = {
-	entry: path.resolve(__dirname, '../app/App.jsx'),
+	entry: path.resolve(__dirname, '../app/modules/App/App.jsx'),
 	output: {
 		path: path.resolve(__dirname, '../app/'),
 		filename: "bundle.js"
@@ -25,7 +25,8 @@ module.exports = {
 	},
 	resolve: {
 		alias: {
-			'_app': path.resolve(__dirname, '../app')
+			'_app': path.resolve(__dirname, '../app'),
+			'_modules': path.resolve(__dirname, '../app/modules')
 		}
 	}
 };
