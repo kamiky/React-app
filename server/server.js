@@ -4,11 +4,14 @@ const path = require('path')
 const serve = require('koa-static');
 const app = koa()
 
-app.use(serve(`${__dirname}/app/`))
+app.use(serve(`${__dirname}/../app/`))
 
 app.use(function* () {
-  const page = fs.readFileSync(path.join(__dirname, '/app/index.html'), 'utf8')
+  const page = fs.readFileSync(path.join(__dirname, '../app/index.html'), 'utf8')
   this.body = page
 })
+
+const keymetrics = require('./utils/keymetrics')
+keymetrics.run()
 
 app.listen(8080)

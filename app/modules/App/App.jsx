@@ -28,10 +28,6 @@ import LanguageProvider from '_modules/LanguageProvider/LanguageProvider.jsx'
 import Dashboard from '_modules/Dashboard/Dashboard.jsx'
 import Home from '_modules/Home/Home.jsx'
 
-/*
-    modules/App/App.jsx
-*/
-
 class App extends Component {
   constructor(props) {
         super(props)
