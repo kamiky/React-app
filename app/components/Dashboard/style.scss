@@ -1,0 +1,148 @@
+@import '~styles/variable.scss';
+$defaultHeight: 250px;
+
+/* default wrapper block, min height 250px */
+@mixin defaultBlock(){
+	.element {
+		background-color: $primaryColor;
+		border-radius: 4px;
+		box-shadow: 0px 5px 10px -6px black;
+		position: relative;
+		padding: 10px;
+		min-height: 250px;
+	}
+}
+
+/* square wrapper (height ~= width) */
+@mixin squareBlock() {
+	position: relative;
+	width:100%;
+	display:inline-block;
+	margin-bottom: 6px;
+	height: auto;
+	.dummy {
+		margin-top: 75%;
+	}
+	.element {
+		position: absolute;
+		padding: 10px;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: $primaryColor;
+		border-radius: 4px;
+		box-shadow: 0px 5px 10px -6px black;
+	}
+}
+
+
+.dashboard-wrapper {
+	padding-bottom: 10px;
+	line-height: 1.3em;
+	font-size:12px;
+	
+	&.noPaddingBottom {
+		padding-bottom: 0px;
+	}
+
+	&.square-shape {
+		
+		@media only screen and (max-width: 48em) {
+			@include defaultBlock();
+		}
+		/* dashboard-block is a square if screenwidth larger than xs */
+		@media only screen and (min-width: 48em) {
+			@include squareBlock();
+		}
+	}
+
+	&.default-shape {
+		@include defaultBlock();
+	}
+
+	.element {
+		tr {
+			cursor: pointer;
+		}
+
+		.topLeft {
+			position: absolute;
+			top:10px;
+			left:10px;
+		}
+
+		.topRight {
+			position: absolute;
+			top:10px;
+			right:10px;
+		}
+
+		.bottomLeft {
+			position: absolute;
+			bottom: 10px;
+			left: 10px;
+		}
+
+		.bottomRight {
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+		}
+
+		.center-container {
+			position: absolute;
+			top: 10px;
+			left: 10px;
+			right: 10px;
+			bottom: 10px;
+			.center {
+				display: inline-block;
+				vertical-align: middle;
+				text-align: center;
+				width: 100%;
+			}
+		}
+
+
+		.size1 {
+			font-size: 12px;
+			line-height: 1.3em;
+		}
+
+		.size2 {
+			font-size: 18px;
+			line-height: 1.3em;
+		}
+
+		.size3 {
+			font-size: 30px;
+			line-height: 1.5em;
+		}
+
+		.size4 {
+			font-size: 40px;
+			line-height: 1.6em;
+		}
+
+	}
+
+	&.paddingTop .element {
+		padding-top: 35px;
+	}
+}
+
+#dashboard {
+	padding-left: 5px;
+	padding-right: 5px;
+	height: 100%;
+	& > .row {
+		height: 100%;
+	}
+	.row {
+		& > div {
+			padding-left: 5px;
+			padding-right: 5px;
+		}
+	}
+}

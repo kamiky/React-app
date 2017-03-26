@@ -17,18 +17,12 @@ export default class Home extends React.Component {
     super(props);
   }
 
-  onClick() {
-    this.props.actions.update()
-  }
-
   render() {
-    const { test } = this.props
     return (
-     <div style={{textAlign: 'center'}}>
-        <h1 onClick={this.onClick.bind(this)}>
+     <div className='home'>
+        <h1>
           <FormattedMessage {...messages.welcome} />
         </h1>
-
       </div>);
   }
 }

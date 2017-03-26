@@ -3,15 +3,27 @@
  */
 
 import React from 'react';
-import LocaleToggle from '_modules/LocaleToggle/LocaleToggle.jsx'
+import Navbar from '_components/Navbar/Navbar.jsx'
+import Sidebar from '_components/Sidebar/Sidebar.jsx'
 
 export default class Layout extends React.Component {
   render() {
     return (
      <div className='layout'>
-        <LocaleToggle />
-        {this.props.children}
+     	<Navbar />
+        	<div className=''>
+        		<Sidebar />
+        		<div className=''>
+        			<div className='app-container'>
+        				{this.props.children}
+        			</div>
+        		</div>
+        	</div>
       </div>
     )
   }
+}
+
+Layout.propTypes = {
+  children: React.PropTypes.element.isRequired,
 }

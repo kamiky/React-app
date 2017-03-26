@@ -1,0 +1,15 @@
+@import '~styles/variable.scss';
+
+.localeToggle {
+	height:100%;
+	line-height: $navbarHeight;
+	
+	width: 100%;
+	height: $navbarHeight;
+	border-right: 1px solid $borderColor;
+    font-size: 12px;
+    text-align: center;
+	span {
+		cursor: pointer;
+	}
+}
