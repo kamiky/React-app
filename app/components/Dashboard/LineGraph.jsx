@@ -54,7 +54,6 @@ export default class LineGraph extends React.Component {
   }
 
   reset() {
-    console.log('reset')
     chartData.datasets[0].data = []
     chartData.datasets[1].data = []
 
@@ -66,7 +65,6 @@ export default class LineGraph extends React.Component {
   }
 
   componentWillMount() {
-    console.log('will mount')
     /* prevent when changing language */
     if (chartData.labels.length > 0) {
       return

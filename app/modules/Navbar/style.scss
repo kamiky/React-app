@@ -1,0 +1,31 @@
+@import '~styles/variable.scss';
+
+nav#header {
+  height: $navbarHeight;
+  background-color: $primaryColor;
+  border-bottom: 1px solid $borderColor;
+  position:relative;
+  z-index: 2;
+  .left-corner {
+    width: $navbarWidth;
+    display: inline-block;
+    vertical-align: top;
+  }
+  .left-side {
+    padding: 0px 10px;
+    display: inline-block;
+    vertical-align: top;
+    & > div {
+      margin:0px 5px !important;
+    }
+  }
+
+  .navbar-select {
+    height: 100% !important;
+  }
+
+  .chip, .navbar-select {
+    display: inline-block !important;
+    vertical-align: middle ;
+  }
+}

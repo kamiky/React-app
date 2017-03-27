@@ -40,8 +40,8 @@ class AppGraph extends React.Component {
 
   render() {
     const {appSelected, serverSelected} = this.props.metrics
-    const cpu = nested.get(this.props, `metrics.realTime.${serverSelected}.${appSelected}.cpu`)
-    const mem = nested.get(this.props, `metrics.realTime.${serverSelected}.${appSelected}.memory`)
+    const cpu = nested.get(this.props, `metrics.realTime.${serverSelected}.apps.${appSelected}.cpu`)
+    const mem = nested.get(this.props, `metrics.realTime.${serverSelected}.apps.${appSelected}.memory`)
     const convertedMem = mathService.bytesToSize(mem)
     return (
       <Wrapper >

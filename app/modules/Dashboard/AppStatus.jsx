@@ -28,7 +28,7 @@ class AppStatus extends React.Component {
 
   render() {
     const {appSelected, serverSelected} = this.props.metrics
-    const appData = nested.get(this.props, `metrics.realTime.${serverSelected}.${appSelected}`)
+    const appData = nested.get(this.props, `metrics.realTime.${serverSelected}.apps.${appSelected}`)
     if (!appData) return (
       <Wrapper square />
     )

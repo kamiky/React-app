@@ -47,7 +47,7 @@ class AppList extends React.Component {
 
   render() {
     const {appSelected, serverSelected} = this.props.metrics
-    const apps = nested.get(this.props, `metrics.realTime.${serverSelected}`)
+    const apps = nested.get(this.props, `metrics.realTime.${serverSelected}.apps`)
     return (
       <Wrapper noPaddingBottom paddingTop >
         <div>

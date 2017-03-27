@@ -15,6 +15,7 @@ module.exports = class Keymetrics {
     yield this.initApi()
     this.initSocket()
     this.run()
+    // yield this.test()
   }
 
   *initApi () {
@@ -87,30 +88,39 @@ module.exports = class Keymetrics {
       if (!data || !data.apps_server) {
         throw new Error('abort on data:*:status - invalid structure response')
       }
-      // console.log(' data : ', data)
-      // console.log('__________')
-      // console.log(' monit mapky: ', data.apps_server.daryl['mapkyLogs'])
-      // console.log('__________')
-      // console.log('__________')
-      var servers = {}, appData = {}
+      //data.servers.daryl.data)
+      var servers = {}, appData = {}, serverData = {}
       for (var serverName in data.apps_server) {
         for (var appName in data.apps_server[serverName]) {
+
+          /* parse servers realtime data */
+          serverData = nested.get(data, `servers.${serverName}.data.server`)
+          nested.set(servers, `${serverName}.data.total_mem`, serverData.total_mem)
+          nested.set(servers, `${serverName}.data.free_mem`, serverData.free_mem)
+          nested.set(servers, `${serverName}.data.uptime`, serverData.uptime)
+          nested.set(servers, `${serverName}.data.platform`, serverData.platform)
+          nested.set(servers, `${serverName}.data.node_version`, serverData.node_version)
+          nested.set(servers, `${serverName}.data.pm2_version`, serverData.pm2_version)
+
+          /* parse applications realtime data */
           appData = nested.get(data, `apps_server.${serverName}.${appName}`)
-          if (!appData) continue
-          nested.set(servers, `${serverName}.${appName}.pid`, appData.pid)
-          nested.set(servers, `${serverName}.${appName}.name`, appData.name)
-          nested.set(servers, `${serverName}.${appName}.interpreter`, appData.interpreter)
-          nested.set(servers, `${serverName}.${appName}.restart_time`, appData.restart_time)
-          nested.set(servers, `${serverName}.${appName}.created_at`, appData.created_at)
-          nested.set(servers, `${serverName}.${appName}.pm_uptime`, appData.pm_uptime)
-          nested.set(servers, `${serverName}.${appName}.status`, appData.status)
-          nested.set(servers, `${serverName}.${appName}.cpu`, appData.cpu)
-          nested.set(servers, `${serverName}.${appName}.memory`, appData.memory)
-          if (appData.versioning) {
-            nested.set(servers, `${serverName}.${appName}.versioning.type`, appData.versioning.type)
-            nested.set(servers, `${serverName}.${appName}.versioning.url`, appData.versioning.url)
-            nested.set(servers, `${serverName}.${appName}.versioning.comment`, appData.versioning.comment)
-            nested.set(servers, `${serverName}.${appName}.versioning.remote`, appData.versioning.remote)
+          if (appData) {
+            nested.set(servers, `${serverName}.apps.${appName}.pid`, appData.pid)
+            nested.set(servers, `${serverName}.apps.${appName}.name`, appData.name)
+            nested.set(servers, `${serverName}.apps.${appName}.interpreter`, appData.interpreter)
+            nested.set(servers, `${serverName}.apps.${appName}.restart_time`, appData.restart_time)
+            nested.set(servers, `${serverName}.apps.${appName}.created_at`, appData.created_at)
+            nested.set(servers, `${serverName}.apps.${appName}.pm_uptime`, appData.pm_uptime)
+            nested.set(servers, `${serverName}.apps.${appName}.status`, appData.status)
+            nested.set(servers, `${serverName}.apps.${appName}.cpu`, appData.cpu)
+            nested.set(servers, `${serverName}.apps.${appName}.memory`, appData.memory)
+            nested.set(servers, `${serverName}.apps.${appName}.process_count`, appData.process_count)
+            if (appData.versioning) {
+              nested.set(servers, `${serverName}.apps.${appName}.versioning.type`, appData.versioning.type)
+              nested.set(servers, `${serverName}.apps.${appName}.versioning.url`, appData.versioning.url)
+              nested.set(servers, `${serverName}.apps.${appName}.versioning.comment`, appData.versioning.comment)
+              nested.set(servers, `${serverName}.apps.${appName}.versioning.remote`, appData.versioning.remote)
+            }
           }
         }
       }
@@ -158,12 +168,12 @@ module.exports = class Keymetrics {
 
   *test () {
     return new Promise((resolve, reject) => {
-      this.km.bucket.Data.monitoring((err, res) => {
+      this.km.bucket.Data.events({}, (err, res) => {
         if (err) {
           return reject(err)
         }
-        console.log('test : ', res)
-        resolve('x')
+        console.log(res)
+        resolve()
       })
     })
   }

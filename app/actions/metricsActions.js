@@ -15,7 +15,7 @@ export const updateServers = (data) => ({
   data
 })
 
-export const updateApps = (data) => ({
-  type: types.UPDATE_APPS,
+export const updateRealTime = (data) => ({
+  type: types.UPDATE_REALTIME,
   data
 })

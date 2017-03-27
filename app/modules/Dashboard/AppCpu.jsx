@@ -28,7 +28,7 @@ class AppCpu extends React.Component {
 
   render() {
     const {appSelected, serverSelected} = this.props.metrics
-    const cpu = nested.get(this.props, `metrics.realTime.${serverSelected}.${appSelected}.cpu`) || '0' + '%'
+    const cpu = (nested.get(this.props, `metrics.realTime.${serverSelected}.apps.${appSelected}.cpu`) || '0') + '%'
     return (
       <Wrapper square>
         <SquareContent  topLeft={{ text: 'CPU', size: 1, color: 3 }}

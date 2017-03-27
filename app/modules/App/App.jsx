@@ -67,16 +67,16 @@ class App extends Component {
       return (
         <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
           <Provider store={store}>
-            <LanguageProvider>
               <Socket>
+            <LanguageProvider>
                 <Router history={browserHistory} >
                   <Route path='/' component={Layout}>
                     <IndexRoute component={Dashboard}/>
                     <Route path='/home' component={Home}/>
                   </Route>
                 </Router>
-              </Socket>
             </LanguageProvider>
+              </Socket>
           </Provider>
           </MuiThemeProvider>
         )

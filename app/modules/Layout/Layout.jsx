@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import Navbar from '_components/Navbar/Navbar.jsx'
+import Navbar from '_modules/Navbar/NavbarContainer.jsx'
 import Sidebar from '_components/Sidebar/Sidebar.jsx'
 
 export default class Layout extends React.Component {

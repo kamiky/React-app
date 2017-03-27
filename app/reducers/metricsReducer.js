@@ -18,7 +18,7 @@ const initialState = {
     active: true,
     name: '',
     ip: '',
-    ... 
+    ...
   }] */
   servers: [],
 
@@ -32,7 +32,7 @@ const initialState = {
 }
 
 const metricsReducer = (state = initialState, action) => {
-  var serverSelected, firstServer, firstApp, keys
+  var apps, firstServer, firstApp
 
   switch (action.type) {
     case types.UPDATE_BUCKET:
@@ -51,12 +51,13 @@ const metricsReducer = (state = initialState, action) => {
         _v: state._v + 1
       }
 
-    case types.UPDATE_APPS:
+    case types.UPDATE_REALTIME:
+      console.log(':: ', action.data)
       try {
-        serverSelected = nested.get(action, `data.${state.serverSelected}`)
-        firstApp = Object.keys(serverSelected)[0]
+        apps = nested.get(action, `data.${state.serverSelected}.apps`)
+        firstApp = Object.keys(apps)[0]
       } catch (err) {
-        console.log('err', err)
+        console.log('(warning)', err)
         firstApp = null
       }
       return {

@@ -52,7 +52,7 @@ export class Socket extends React.Component {
 
     socket.on('keymetrics::realTime', (data) => {
       // console.log('receive keymetrics::realTime : ', data)
-      this.props.actions.updateApps(data)
+      this.props.actions.updateRealTime(data)
     })
 
     socket.on('disconnect', function () {
