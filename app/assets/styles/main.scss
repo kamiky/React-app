@@ -84,3 +84,15 @@ h1 {
 .colorError {
   color: red;
 }
+
+.fade {
+  -o-transition: opacity 400ms;
+  -moz-transition: opacity 400ms;
+  -ms-transition: opacity 400ms;
+  -webkit-transition: opacity 400ms;
+  transition: opacity 400ms;
+}
+
+.hide {
+  opacity: 0;
+}

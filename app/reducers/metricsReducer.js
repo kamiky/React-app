@@ -20,7 +20,7 @@ const initialState = {
     ip: '',
     ...
   }] */
-  servers: [],
+  servers: null,
 
   /* {
     [server]: {
@@ -52,7 +52,6 @@ const metricsReducer = (state = initialState, action) => {
       }
 
     case types.UPDATE_REALTIME:
-      console.log(':: ', action.data)
       try {
         apps = nested.get(action, `data.${state.serverSelected}.apps`)
         firstApp = Object.keys(apps)[0]

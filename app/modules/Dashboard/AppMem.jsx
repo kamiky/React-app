@@ -29,7 +29,6 @@ class AppMem extends React.Component {
   }
 
   render() {
-    console.log('> ', this.props.metrics)
     const {appSelected, serverSelected} = this.props.metrics
     const mem = nested.get(this.props, `metrics.realTime.${serverSelected}.apps.${appSelected}.memory`)
     const convertedMem = mathService.bytesToSizeStr(mem)

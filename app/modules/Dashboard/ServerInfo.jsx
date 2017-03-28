@@ -28,6 +28,10 @@ class ServerInfo extends React.Component {
   render() {
     var serverData
     const {serverSelected, servers} = this.props.metrics
+    if (!servers) return (
+      <Wrapper />
+    )
+
     for (var i = servers.length - 1; i >= 0; --i) {
       if (servers[i].name === serverSelected) {
         serverData = servers[i]

@@ -7,6 +7,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import CircularProgress from 'material-ui/CircularProgress';
 
+import coreService from '_app/services/coreService'
+
 import './style.scss'
 
 const mapStateToProps = state => ({
@@ -15,8 +17,12 @@ const mapStateToProps = state => ({
 
 class PreLoader extends React.Component {
   render() {
+    var classNames = 'pre-loader fade'
+    if (coreService.isReady(this.props.metrics)) {
+      classNames += ' hide'
+    }
     return (
-     <div className='pre-loader'>
+     <div className={classNames}>
         <div className='vhelper'></div>
         <CircularProgress size={80} className='progress' color='#ff4081'/>
       </div>
