@@ -86,13 +86,14 @@ h1 {
 }
 
 .fade {
-  -o-transition: opacity 400ms;
-  -moz-transition: opacity 400ms;
-  -ms-transition: opacity 400ms;
-  -webkit-transition: opacity 400ms;
-  transition: opacity 400ms;
+  -o-transition: visibility 400ms, opacity 400ms;
+  -moz-transition: visibility 400ms, opacity 400ms;
+  -ms-transition: visibility 400ms, opacity 400ms;
+  -webkit-transition: visibility 400ms, opacity 400ms;
+  transition: visibility 400ms, opacity 400ms;
 }
 
 .hide {
   opacity: 0;
+  visibility:hidden;
 }
